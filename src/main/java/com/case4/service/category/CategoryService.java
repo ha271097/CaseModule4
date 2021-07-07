@@ -3,9 +3,11 @@ package com.case4.service.category;
 import com.case4.model.Category;
 import com.case4.repo.ICategoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class CategoryService implements ICategoryService{
 
     @Autowired

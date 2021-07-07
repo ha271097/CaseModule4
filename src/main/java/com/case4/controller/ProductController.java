@@ -12,6 +12,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/products")
+@CrossOrigin
+
 public class ProductController {
 
     @Autowired
@@ -30,7 +32,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Product> saveCategory(@RequestBody Product product) {
+    public ResponseEntity<Product> saveProduct(@RequestBody Product product) {
         productService.save(product);
         return new ResponseEntity<>( HttpStatus.CREATED);
     }
