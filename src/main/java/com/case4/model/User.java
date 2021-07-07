@@ -9,6 +9,7 @@ import org.aspectj.bridge.IMessage;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -48,4 +49,6 @@ public class User {
     @NotNull
     @ManyToOne
     private Role role;
+
+
 }
