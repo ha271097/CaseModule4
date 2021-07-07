@@ -1,7 +1,8 @@
-package com.case4.service.user;
+package com.case4.service.impl;
 
 
 import com.case4.repo.IUserRepo;
+import com.case4.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;

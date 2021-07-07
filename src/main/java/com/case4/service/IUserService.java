@@ -1,4 +1,4 @@
-package com.case4.service.user;
+package com.case4.service;
 
 import com.case4.model.User;
 
