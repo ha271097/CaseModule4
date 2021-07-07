@@ -25,7 +25,7 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/home").permitAll()
+        http.authorizeRequests().antMatchers("/home", "/products").permitAll()
                 .and()
                 .authorizeRequests().antMatchers("/cart/**").hasRole("USER")
                 .and()
