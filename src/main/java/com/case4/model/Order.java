@@ -16,8 +16,9 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany(mappedBy = "category")
-    private List<Product> products;
+    @OneToMany
+    @Column(name = "product")
+    private List<Product> product;
     @NotNull
     private int quantity;
 
@@ -30,11 +31,11 @@ public class Order {
     }
 
     public List<Product> getProducts() {
-        return products;
+        return product;
     }
 
     public void setProducts(List<Product> products) {
-        this.products = products;
+        this.product = products;
     }
 
     public int getQuantity() {
