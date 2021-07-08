@@ -25,12 +25,12 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers( "/products/**", "/categories/**","/users").permitAll()
+        http.authorizeRequests().antMatchers( "/products/**", "/categories/**","/users","/orders/**", "/home/**").permitAll()
                 .and()
-                .authorizeRequests().antMatchers("/home").hasRole("USER")
-                .and()
-                .authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN")
-                .and()
+//                .authorizeRequests().antMatchers("/home").hasRole("USER")
+//                .and()
+//                .authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN")
+//                .and()
                 .formLogin()
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));

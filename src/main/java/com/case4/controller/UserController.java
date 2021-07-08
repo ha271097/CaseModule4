@@ -39,18 +39,25 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(SignInForm signInForm){
-        String username = signInForm.getUsername();
-        String password = signInForm.getPassword();
+    public ResponseEntity<User> login(@RequestBody SignInForm signInForm){
+        String username1 = signInForm.getUsername();
+        String password1 = signInForm.getPassword();
         Iterable<User> userIterable = userService.findAll();
         for (User user: userIterable
              ) {
-            if (user.getUsername().equals(username) && user.getPassword().equals(password)){
+            if (user.getUsername().equals(username1) && user.getPassword().equals(password1)){
                 return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
             }
         }
         return new ResponseEntity<>( HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+
+    //them vao gio hang(order)
+//    @PostMapping("/add/{id}")
+//    public ResponseEntity<?> addToCart(){
+//
+//    }
 
 
     @PutMapping("/{id}")

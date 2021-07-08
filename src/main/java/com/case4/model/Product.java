@@ -23,6 +23,9 @@ public class Product {
     private String description;
     @Lob
     private String img;
+
+
+
     @ManyToOne
     @JoinColumn(name="category_id", nullable=false)
     private Category category;
