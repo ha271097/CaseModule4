@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -18,6 +19,11 @@ public class CategoryController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @ModelAttribute("categories")
+    public Iterable<Category> categories(){
+        return categoryService.findAll();
+    }
 
     @GetMapping()
     public ResponseEntity<Iterable<Category>> findAll(){
