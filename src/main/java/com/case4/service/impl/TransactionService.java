@@ -1,4 +1,4 @@
-package com.case4.service;
+package com.case4.service.impl;
 
 public class TransactionService {
 }

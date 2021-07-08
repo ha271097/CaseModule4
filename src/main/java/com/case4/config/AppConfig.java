@@ -1,6 +1,6 @@
 package com.case4.config;
 
-import com.case4.service.user.IUserService;
+import com.case4.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
