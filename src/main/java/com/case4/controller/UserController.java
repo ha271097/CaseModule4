@@ -4,7 +4,7 @@ package com.case4.controller;
 import com.case4.dto.SignInForm;
 import com.case4.model.Product;
 import com.case4.model.User;
-import com.case4.service.impl.UserService;
+import com.case4.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,13 +1,23 @@
 package com.case4.controller;
 
+import com.case4.model.Category;
 import com.case4.model.Product;
+import com.case4.model.ProductForm;
+import com.case4.service.category.CategoryService;
 import com.case4.service.product.ProductService;
+import org.omg.CORBA.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,23 +27,69 @@ import java.util.Optional;
 
 public class ProductController {
 
+    @Value("${upload.path}")
+    private String fileUpload;
+
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/list")
-    public ModelAndView listProduct(){
-        return new ModelAndView("/products/index", "list", productService.findAll());
+    @Autowired
+    private CategoryService categoryService;
+
+
+    @ModelAttribute("categories")
+    public Iterable<Category> categories(){
+        return categoryService.findAll();
     }
 
-//    @GetMapping()
-//    public ResponseEntity<Iterable<Product>> findAll(){
-//
-//        return new ResponseEntity<>(productService.findAll(), HttpStatus.OK);
-//    }
 
-    @GetMapping("/{id}/edit")
+
+    @GetMapping("")
+    public ModelAndView listProduct(){
+        ModelAndView modelAndView = new ModelAndView("/products/index");
+        List<Product> products = (List<Product>) productService.findAll();
+        modelAndView.addObject("list", products);
+        modelAndView.addObject("message", "Thanh cong");
+        return modelAndView;
+    }
+
+
+
+    @GetMapping("/create")
+    public ModelAndView showFormCreate(){
+        ModelAndView modelAndView = new ModelAndView("/products/create");
+        modelAndView.addObject("product", new ProductForm());
+        return modelAndView;
+    }
+
+
+
+    @PostMapping("/create")
+    public RedirectView createProduct(@ModelAttribute ProductForm product){
+        Product product1 = new Product(
+                product.getId(),
+                product.getName(),
+                product.getQuantity(),
+                product.getPrice(),
+                product.getDescription(),
+                product.getCategory()
+        );
+        MultipartFile multipartFile = product.getImage();
+        String fileName = multipartFile.getOriginalFilename();
+        try {
+            FileCopyUtils.copy(product.getImage().getBytes(), new File(this.fileUpload + fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        product1.setImg(fileName);
+        productService.save(product1);
+        return new RedirectView("/products/list");
+    }
+
+
+    @GetMapping("/products/{id}/edit")
     public ModelAndView showFormEdit(@PathVariable Long id){
-        return new ModelAndView("/products/edit", "customer", productService.findById(id));
+        return new ModelAndView("/products/edit", "product", productService.findById(id));
 
     }
 
@@ -43,30 +99,5 @@ public class ProductController {
         return new ModelAndView("redirect:/products/list");
     }
 
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Optional<Product>> findByID(@PathVariable Long id){
-
-        return new ResponseEntity<>(productService.findById(id), HttpStatus.OK);
-    }
-
-    @PostMapping
-    public ResponseEntity<Product> saveProduct(@RequestBody Product product) {
-        productService.save(product);
-        return new ResponseEntity<>( HttpStatus.CREATED);
-    }
-
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product){
-        productService.save(product);
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Product> deleteProduct(@PathVariable Long id){
-        productService.remove(id);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 
 }

@@ -1,11 +1,13 @@
 
 <!DOCTYPE html>
-<html xmlns: xmlns:th="http://www.w3.org/1999/xhtml" th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th="http://www.w3.org/1999/xhtml">
 <head th:replace="/products/layout :: head">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+
+<p>sdcvgbn</p>
 
 <p>
     <a th:href="@{/products/list}">
@@ -14,7 +16,7 @@
 </p>
 
 
-<form   th:action="@{/customer/edit}" method="post" th:object="${customer}">
+<form   th:action="@{/edit}" method="post" th:object="${product}">
     <table>
         <tr><td> <input type="hidden" th:field="*{id}"/></td></tr>
         <tr>
@@ -23,7 +25,7 @@
         </tr>
         <tr>
             <td>Price</td>
-            <td><input type="text" th:field="*{email}"></td>
+            <td><input type="text" th:field="*{price}"></td>
         </tr>
         <tr>
             <td>Quantity</td>
