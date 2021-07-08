@@ -10,13 +10,13 @@
 <p>sdcvgbn</p>
 
 <p>
-    <a th:href="@{/products/list}">
-        Back to customer list
+    <a th:href="@{/products}">
+        Back to product list
     </a>
 </p>
 
 
-<form   th:action="@{/edit}" method="post" th:object="${product}">
+<form   th:action="@{/products/edit}" method="post" th:object="${product}">
     <table>
         <tr><td> <input type="hidden" th:field="*{id}"/></td></tr>
         <tr>
@@ -35,6 +35,12 @@
             <td>Description</td>
             <td><input type="text" th:field="*{quantity}"></td>
         </tr>
+<!--        <tr>-->
+<!--            <td>Image</td>-->
+<!--            <td><input type="file" th:field="*{image}"></td>-->
+<!--        </tr>-->
+
+
         <tr>
             <td>Category</td>
             <td>

@@ -37,8 +37,8 @@
         </td>
         <td th:text="${product.category.name}"></td>
         <td><a th:href="@{/products/{id}/edit(id=${product.getId()})}">edit</a></td>
-        <td><a th:href="@{/{id}/delete(id=${product.getId()})}">delete</a></td>
-        <td><a th:href="@{/{id}/view(id=${product.getId()})}">view</a></td>
+        <td><a th:href="@{/products/{id}/delete(id=${product.getId()})}">delete</a></td>
+        <td><a th:href="@{/products/{id}/view(id=${product.getId()})}">view</a></td>
     </tr>
     </tbody>
 </table>

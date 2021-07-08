@@ -83,20 +83,35 @@ public class ProductController {
         }
         product1.setImg(fileName);
         productService.save(product1);
-        return new RedirectView("/products/list");
+        return new RedirectView("/products");
     }
 
 
-    @GetMapping("/products/{id}/edit")
-    public ModelAndView showFormEdit(@PathVariable Long id){
-        return new ModelAndView("/products/edit", "product", productService.findById(id));
-
+    @GetMapping("/{id}/edit")
+    public ModelAndView showFormEditProduct(@PathVariable Long id){
+        ModelAndView modelAndView = new ModelAndView("/products/edit");
+        modelAndView.addObject("product", productService.findById(id));
+        return modelAndView;
     }
+
+
 
     @PostMapping("/edit")
     public ModelAndView edit(Product product){
         productService.save(product);
-        return new ModelAndView("redirect:/products/list");
+        return new ModelAndView("redirect:/products");
+    }
+
+    @GetMapping("/{id}/delete")
+    public ModelAndView showFormDelete(@PathVariable Long id){
+        return new ModelAndView("/products/delete","product", productService.findById(id));
+    }
+
+
+    @PostMapping("/delete")
+    public ModelAndView delete(Product product){
+        productService.remove(product.getId());
+        return new ModelAndView("redirect:/products");
     }
 
 

@@ -1,8 +1,11 @@
 package com.case4.model;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+
 
 @Data
 public class ProductForm {
