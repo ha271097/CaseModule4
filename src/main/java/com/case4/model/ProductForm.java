@@ -1,6 +1,4 @@
 package com.case4.model;
-
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,72 +6,47 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 
-@Entity
+
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Table
-public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ProductForm {
     private Long id;
-    @NotNull
     private String name;
     private int quantity;
     private double price;
     private String description;
-    @Lob
-    private String img;
-
-
-
+    private MultipartFile image;
     @ManyToOne
     private Category category;
 
-
-
-
-
-
-    public void upQuantity(){
-        this.quantity = quantity ++;
-    }
-    public void downQuantity(){
-        this.quantity = quantity --;
+    public ProductForm() {
     }
 
-
-
-    public Product(Long id, String name, int quantity, double price, String description, Category category) {
-        this.id = id;
-        this.name = name;
-        this.quantity =quantity;
-        this.price = price;
-        this.description = description;
-        this.category = category;
+    public ProductForm(ProductFormBuilder productFormBuilder) {
+        this.id = productFormBuilder.id;
+        this.name = productFormBuilder.name;
+        this.quantity = productFormBuilder.quantity;
+        this.price = productFormBuilder.price;
+        this.description = productFormBuilder.description;
+        this.category = productFormBuilder.build().category;
+        this.image = productFormBuilder.image;
     }
 
-
-    public Product(ProductBuilder productBuilder) {
-        this.id = productBuilder.id;
-        this.name = productBuilder.name;
-        this.quantity = productBuilder.quantity;
-        this.price = productBuilder.price;
-        this.description = productBuilder.description;
-        this.category = productBuilder.build().category;
-        this.img = productBuilder.image;
-    }
-
-
-
-    public static class ProductBuilder {
+    public static class ProductFormBuilder {
         private Long id;
         private String name;
         private int quantity;
         private double price;
         private String description;
-        private String image;
+        private MultipartFile image;
 
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+            this.id = id;
+        }
 
         public String getName() {
             return name;
@@ -107,30 +80,30 @@ public class Product {
             this.description = description;
         }
 
-        public String getImage() {
+        public MultipartFile getImage() {
             return image;
         }
 
-        public void setImage(String image) {
+        public void setImage(MultipartFile image) {
             this.image = image;
         }
 
-        public ProductBuilder(String name) {
+        public ProductFormBuilder(String name) {
             this.name = name;
         }
 
-        public ProductBuilder description(String description) {
+        public ProductFormBuilder description(String description) {
             this.description = description;
             return this;
         }
 
-        public ProductBuilder image(String image) {
+        public ProductFormBuilder image(MultipartFile image) {
             this.image = image;
             return this;
         }
 
-        public Product build() {
-            return new Product(this);
+        public ProductForm build() {
+            return new ProductForm(this);
         }
     }
 }

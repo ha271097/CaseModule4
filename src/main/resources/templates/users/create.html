@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/products/layout :: head">
+    <meta charset="UTF-8">
+    <title>Create new product</title>
+</head>
+<body>
+<h1>Create new product</h1>
+<form method="post" th:object="${user}" >
+    <table>
+        <tr><td><input type="hidden" th:field="*{id}"/></td></tr>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" th:field="*{name}"></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="text" th:field="*{email}"></td>
+        </tr>
+
+        <tr>
+            <td>Username</td>
+            <td><input type="text" th:field="*{username}"></td>
+        </tr>
+
+        <tr>
+            <td>Password</td>
+            <td><input type="text" th:field="*{password}"></td>
+        </tr>
+
+        <tr>
+            <td>Gender</td>
+            <td><input type="text" th:field="*{gender}"></td>
+        </tr>
+
+        <tr>
+            <td>Role</td>
+            <td>
+                <select  th:field="*{role}">
+                    <th:block th:each="r: ${roles}">
+                        <option th:value="${r.id}" th:text="${r.roleName}"></option>
+                    </th:block>
+                </select>
+            </td>
+        </tr>
+        <td></td>
+        <td><input type="submit" value="Create"></td>
+        </tr>
+    </table>
+</form>
+<footer th:replace="/products/layout :: footer"></footer>
+</body>
+</html>

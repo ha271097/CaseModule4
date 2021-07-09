@@ -1,6 +1,6 @@
 package com.case4.config;
 
-import com.case4.service.IUserService;
+import com.case4.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -25,9 +25,9 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers( "/products/**", "/categories/**","/users","/orders/**", "/home/**").permitAll()
+        http.authorizeRequests().antMatchers( "/products/**", "/categories/**","/users","/home/**").permitAll()
                 .and()
-//                .authorizeRequests().antMatchers("/home").hasRole("USER")
+//                .authorizeRequests().antMatchers().hasRole("USER")
 //                .and()
 //                .authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN")
 //                .and()
