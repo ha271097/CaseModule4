@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Optional;
 @Controller
 @RestController
-@RequestMapping("/users")
+@RequestMapping("")
 public class UserController {
 
     @Autowired
@@ -33,10 +33,13 @@ public class UserController {
     }
 
 
-    @GetMapping()
-    public ModelAndView listUser(){
-        return new ModelAndView("/users/index","list",userService.findAll());
-    }
+//    @GetMapping("")
+//    public ModelAndView listUser(){
+//        return new ModelAndView("/admin/home","list",userService.findAll());
+//    }
+
+
+
 
     @GetMapping("/create")
     public ModelAndView showFormCreate(){
@@ -48,6 +51,44 @@ public class UserController {
         userService.save(user);
         return new ModelAndView("redirect:/users");
     }
+
+
+
+
+
+    @GetMapping("/{id}/edit")
+    public ModelAndView showFormEdit(@PathVariable Long id){
+        ModelAndView modelAndView = new ModelAndView("/users/edit");
+        modelAndView.addObject("user", userService.findById(id));
+        return modelAndView;
+    }
+
+    @PostMapping("/edit")
+    public ModelAndView edit(User user){
+        userService.save(user);
+        return new ModelAndView("redirect:/products");
+    }
+
+
+
+    @GetMapping("/{id}/delete")
+    public ModelAndView showFormDelete(@PathVariable Long id){
+        return new ModelAndView("/users/delete","user", userService.findById(id));
+    }
+
+
+    @PostMapping("/delete")
+    public ModelAndView delete(Product product){
+        userService.remove(product.getId());
+        return new ModelAndView("redirect:/users");
+    }
+
+
+
+
+
+
+
 
 //    @GetMapping()
 //    public ResponseEntity<Iterable<User>> findAll(){
