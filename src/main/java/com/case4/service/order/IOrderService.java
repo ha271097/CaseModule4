@@ -14,4 +14,6 @@ public interface IOrderService {
     void save(Order order);
 
     void remove(Long id);
+
+    void deleteAll();
 }

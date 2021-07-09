@@ -33,4 +33,7 @@ public class Transaction {
     List<Order> orders = new ArrayList<>();
 
 
+//    public void setUser(String name) {
+//        this.user = user;
+//    }
 }

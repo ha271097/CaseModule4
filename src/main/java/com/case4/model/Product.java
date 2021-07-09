@@ -23,11 +23,11 @@ public class Product {
     private String description;
     @Lob
     private String img;
+
+
+
     @ManyToOne
     private Category category;
-
-
-
 
 
 

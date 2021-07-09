@@ -45,6 +45,8 @@
 //        return categoryService.findAll();
 //    }
 //
+//    @GetMapping("/{id}")
+//    public ResponseEntity<Optional<Product>> findByID(@PathVariable Long id){
 //
 //
 //    @GetMapping("")

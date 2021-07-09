@@ -13,6 +13,7 @@ public class OrderService implements IOrderService{
     @Autowired
     private IOderRepo oderRepo;
 
+
     @Override
     public Iterable<Order> findAll() {
         return oderRepo.findAll();
@@ -25,11 +26,16 @@ public class OrderService implements IOrderService{
 
     @Override
     public void save(Order order) {
-
+        oderRepo.save(order);
     }
 
     @Override
     public void remove(Long id) {
+        oderRepo.deleteById(id);
+    }
 
+    @Override
+    public void deleteAll() {
+        oderRepo.deleteAll();
     }
 }
