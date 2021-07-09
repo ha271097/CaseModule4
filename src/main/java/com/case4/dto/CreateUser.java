@@ -1,29 +1,18 @@
-package com.case4.model;
+package com.case4.dto;
 
-import javax.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
+import com.case4.model.Role;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.aspectj.bridge.IMessage;
 
-import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import java.util.List;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-@Table(name = "user", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {
-                "username"
-        }),
-        @UniqueConstraint(columnNames = {
-                "email"
-        })
-})
-public class User {
+public class CreateUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -43,9 +32,5 @@ public class User {
     @NotNull(message = "Vui lòng nhập mật khẩu của bạn!")
     @Pattern(regexp = "^[a-z0-9]{6,15}", message = "Nhập chữ cái thường hoặc số từ 6 đến 15 kí tự!")
     private String password;
-
-    @NotNull
-    @ManyToOne
-    private Role role ;
 
 }

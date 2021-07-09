@@ -1,6 +1,7 @@
 package com.case4.controller;
 
 //import com.case4.service.user.UserService;
+import com.case4.dto.CreateUser;
 import com.case4.dto.SignInForm;
 import com.case4.model.Role;
 import com.case4.model.User;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RequestMapping("login")
@@ -49,12 +51,12 @@ public class AuthorController {
         for (User user: users
         ) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)){
-                if(user.getRole().getRoleName().toString().equals("ROLE_USER")){
+                if(user.getRole().getRoleName().equals("ROLE_USER")){
                     ModelAndView mav = new ModelAndView("home/index");
                     mav.addObject("user", user);
                     return mav;
                 }
-                if(user.getRole().getRoleName().toString().equals("ROLE_ADMIN")){
+                if(user.getRole().getRoleName().equals("ROLE_ADMIN")){
                     ModelAndView mav = new ModelAndView("admin/home");
                     mav.addObject("user", user);
                     return mav;
@@ -67,13 +69,22 @@ public class AuthorController {
        return modelAndView;
     }
 
-    @GetMapping("/registration")
+    @GetMapping("/create")
     public ModelAndView registation(){
-        return new ModelAndView("/home/registration","user", new User());
+        return new ModelAndView("/home/registration","user", new CreateUser());
     }
 
-
-
-
-
+    @PostMapping("/create")
+    public ModelAndView saveUser(@Valid CreateUser createUser){
+        User user = new User();
+        user.setUsername(createUser.getUsername());
+        user.setEmail(createUser.getEmail());
+        user.setName(createUser.getName());
+        user.setPassword(createUser.getPassword());
+        user.setRole(roleService.findByName("ROLE_USER"));
+        userService.save(user);
+        ModelAndView mav = new ModelAndView("admin/login");
+        mav.addObject("sign", new SignInForm());
+        return mav;
+    }
 }

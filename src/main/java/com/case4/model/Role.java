@@ -22,12 +22,11 @@ public class Role  implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Enumerated(EnumType.STRING)
-    @Column(length = 60, unique = true)
-    private RoleName roleName;
+
+    private String roleName;
 
     @Override
     public String getAuthority() {
-        return this.roleName.name();
+        return this.roleName;
     }
 }
