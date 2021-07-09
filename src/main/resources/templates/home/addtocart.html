@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns: xmlns:th="http://www.w3.org/1999/xhtml" th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<form action="/orders/addtocart" method="post" th:object="${order}" >
+    <table>
+        <tr><td> <input type="hidden" th:field="*{product.id}"/></td></tr>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" th:field="*{product.name}"></td>
+        </tr>
+        <tr>
+            <td>Price</td>
+            <td><input type="text" th:field="*{product.price}"></td>
+        </tr>
+        <tr>
+            <td>Category</td>
+            <td><input type="text" th:field="*{product.category.name}"></td>
+        </tr>
+
+        <tr>
+            <td>Quantity</td>
+            <td><input type="number" th:field="*{quantity}"></td>
+        </tr>
+
+
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Add"></td>
+        </tr>
+    </table>
+
+
+</form>
+
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

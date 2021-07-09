@@ -32,15 +32,6 @@ public class AuthorController {
         return roleService.findAll();
     }
 
-    @GetMapping()
-    public ModelAndView home(){
-        return new ModelAndView("/home/index", "list", productService.findAll()) ;
-    }
-
-    @GetMapping("/registration")
-    public ModelAndView registation(){
-        return new ModelAndView("/home/registration","user", new User());
-    }
 
 
 

@@ -39,15 +39,15 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                           th:href="@{/type/{type}(type=${'áo'})}">Áo</a>
+                           th:href="@{/category/{category}(category=${'dm1'})}">Danh muc 1</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                           th:href="@{/type/{type}(type=${'quần'})}">Quần</a>
+                           th:href="@{/category/{category}(category=${'dm2'})}">Danh muc 2</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                           th:href="@{/type/{type}(type=${'giày'})}">Giày</a>
+                           th:href="@{/category/{category}(category=${'dm3'})}">Danh muc 3</a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
@@ -70,10 +70,11 @@
                      alt="Khongcoanh"/>
             </div>
         </th:block>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 product" th:each="product : ${list}">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 product" th:each="product : ${listProduct}">
             <div class="block-image-product" style="position: relative">
                 <img th:src="${product.img }"  class="img-responsive img-thumbnail"
-                     alt="không có"
+                     alt=""
+
                      width="300px" height="300px">
                 <div class="block-status-product"
                      style="height: 30px; text-align: center ; position: absolute ; top: 10px ; left: 10px ;background-color: #ff253a">
@@ -86,22 +87,25 @@
             </div>
             <div class="block-price-product" style="text-align: center" th:text="${product.getPrice()}+' VNĐ'">
             </div>
+            <div class="block-price-product" style="text-align: center" >
+                <a th:href="@{/orders/addtocart/{id}(id=${product.id})}">Add to cart</a>
+            </div>
         </div>
     </div>
 </div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 product"></div>
-        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 product">
-            <a role="button" class="btn btn-primary" th:href="@{'/'(page=${products.number - 1},regex=${regex})}"
-               th:if="${products.hasPrevious()}">Previous</a>
-            <span th:text="${products.number + 1}"></span>/<span th:text="${products.totalPages}"></span>
-            <a role="button" class="btn btn-primary" th:href="@{'/'(page=${products.number + 1},regex=${regex})}"
-               th:if="${products.hasNext()}">Next</a>
-        </div>
-    </div>
-</div>
+<!--<div class="container">-->
+<!--    <div class="row">-->
+<!--        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 product"></div>-->
+<!--        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 product">-->
+<!--            <a role="button" class="btn btn-primary" th:href="@{'/'(page=${products.number - 1},regex=${regex})}"-->
+<!--               th:if="${products.hasPrevious()}">Previous</a>-->
+<!--            <span th:text="${products.number + 1}"></span>/<span th:text="${products.totalPages}"></span>-->
+<!--            <a role="button" class="btn btn-primary" th:href="@{'/'(page=${products.number + 1},regex=${regex})}"-->
+<!--               th:if="${products.hasNext()}">Next</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 <footer th:replace="/layout :: footer"></footer>
 </body>

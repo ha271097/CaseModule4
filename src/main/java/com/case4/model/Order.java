@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Optional;
+
 @Entity
 @Table(name = "orders")
 @Data
@@ -20,6 +22,10 @@ public class Order {
     private Product product;
     @NotNull
     private int quantity;
+
+//    public Order(Optional<Product> product) {
+//        this.product = product;
+//    }
 
     public Long getId() {
         return id;
