@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-@RequestMapping("/home")
+import java.util.List;
+
+@RequestMapping("login")
 @RestController
 public class AuthorController {
 
@@ -30,9 +32,11 @@ public class AuthorController {
         return roleService.findAll();
     }
 
-    @GetMapping()
-    public ModelAndView home(){
-        return new ModelAndView("/home/index", "list", productService.findAll()) ;
+    @GetMapping("/user")
+    public ModelAndView loginForm(){
+        ModelAndView mav = new ModelAndView("admin/login");
+        mav.addObject("sign", new SignInForm());
+        return mav;
     }
 
 

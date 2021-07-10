@@ -33,4 +33,9 @@ public class OrderService implements IOrderService{
     public void remove(Long id) {
         oderRepo.deleteById(id);
     }
+
+    @Override
+    public void deleteAll() {
+        oderRepo.deleteAll();
+    }
 }

@@ -31,4 +31,7 @@ public class Transaction {
 //    private List<Order> orders;
 
 
+//    public void setUser(String name) {
+//        this.user = user;
+//    }
 }

@@ -4,7 +4,6 @@ import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.util.List;
@@ -33,14 +32,13 @@ public class Product {
 
 
 
-
-
-
     public void upQuantity(){
         this.quantity = quantity ++;
     }
-    public void downQuantity(){
+
+    public int downQuantity(){
         this.quantity = quantity --;
+        return quantity;
     }
 
 
