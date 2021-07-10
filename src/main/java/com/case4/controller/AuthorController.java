@@ -9,6 +9,8 @@ import com.case4.service.product.ProductService;
 import com.case4.service.role.RoleService;
 import com.case4.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -49,7 +51,7 @@ public class AuthorController {
 
 
     @PostMapping("/user")
-    public ModelAndView login(SignInForm signInForm){
+    public ModelAndView login(SignInForm signInForm ){
         ModelAndView modelAndView = new ModelAndView("admin/login");
         String username = signInForm.getUsername();
         String password = signInForm.getPassword();
@@ -70,10 +72,21 @@ public class AuthorController {
                 }
             }
         }
+
+
         String mes = "Tài khoản hoặc mật khẩu không đúng!";
        modelAndView.addObject("mes", mes);
        modelAndView.addObject("sign", new SignInForm());
        return modelAndView;
+    }
+    @ModelAttribute("user")
+    private User getPrincipal() {
+        User userInfo = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            userInfo = userService.getUserByName(((UserDetails) principal).getUsername());
+        }
+        return userInfo;
     }
 
     @GetMapping("/create")

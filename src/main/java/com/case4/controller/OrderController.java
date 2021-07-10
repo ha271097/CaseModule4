@@ -32,9 +32,10 @@ public class OrderController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("listOrders")
-    public ModelAndView listOrder(){
-        return new ModelAndView("/orders/order","cart",orderService.findAll());
+    @GetMapping("listOrders/{id}")
+    public ModelAndView listOrder(@PathVariable Long id){
+        Optional<User> user = userService.findById(id);
+        return new ModelAndView("/orders/order","cart",orderService.findAllByUser(user.get()));
     }
 
 
@@ -61,25 +62,7 @@ public class OrderController {
 //        return modelAndView;
 //    }
 
-//    @PostMapping("/addtocart")
-//    public ResponseEntity<String> buyAjax( @RequestBody Product product, HttpSession session){
-//        if (session.getAttribute("order") == null) {
-//            List<Order> orders = new ArrayList<>();
-//            orders.add(new Order(Optional.ofNullable(product), 1));
-//            session.setAttribute("order", orders);
-//        } else {
-//            List<Order> orders = (List<Order>) session.getAttribute("cart");
-//            int index = isExists(product.getId(), orders);
-//            if (index == -1) {
-//                orders.add(new Order(productService.findById(product.getId()), 1));
-//            } else {
-//                int quanlity = orders.get(index).getQuantity() + 1;
-//                orders.get(index).setQuantity(quanlity);
-//            }
-//            session.setAttribute("cart", orders);
-//        }
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
+
 
 
 //    @PostMapping("/addtocart")
@@ -112,12 +95,12 @@ public class OrderController {
 //        return new ResponseEntity<>(HttpStatus.ACCEPTED);
 //    }
 
-//    @GetMapping("/clear")
-//    public ModelAndView clearCart(HttpSession session) {
-//        orderService.deleteAll();
-//        session.removeAttribute("cart");
-//        return new ModelAndView("/orders/order");
-//    }
+    @GetMapping("/clear")
+    public ModelAndView clearCart(HttpSession session) {
+        orderService.deleteAll();
+        session.removeAttribute("cart");
+        return new ModelAndView("/orders/order");
+    }
 
     @DeleteMapping("/clear")
     public ResponseEntity<?> clearOrder(){

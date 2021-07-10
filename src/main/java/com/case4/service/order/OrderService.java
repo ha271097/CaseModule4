@@ -1,10 +1,12 @@
 package com.case4.service.order;
 
 import com.case4.model.Order;
+import com.case4.model.User;
 import com.case4.repo.IOderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Optional;
 
 @Service
@@ -18,6 +20,16 @@ public class OrderService implements IOrderService{
     public Iterable<Order> findAll() {
         return oderRepo.findAll();
     }
+
+    @Override
+    public Iterable<Order> findAllByUser(User user) {
+        return oderRepo.getAllByUser(user);
+    }
+
+//    @Override
+//    public Iterable<Order> findAllByUserId(Long id) {
+//        return oderRepo.findAllById(Collections.singleton(id));
+//    }
 
     @Override
     public Optional<Order> findById(Long id) {
