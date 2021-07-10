@@ -59,13 +59,12 @@ public class AuthorController {
         ) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)){
                 if(user.getRole().getRoleName().equals("ROLE_USER")){
-                    ModelAndView mav = new ModelAndView("home/index");
-                    System.out.println(user.getUsername());
+                    ModelAndView mav = new ModelAndView("home/helloUser");
                     mav.addObject("user", user);
                     return mav;
                 }
                 if(user.getRole().getRoleName().equals("ROLE_ADMIN")){
-                    ModelAndView mav = new ModelAndView("admin/home");
+                    ModelAndView mav = new ModelAndView("admin/helloadmin");
                     mav.addObject("user", user);
                     return mav;
                 }

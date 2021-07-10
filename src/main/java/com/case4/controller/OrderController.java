@@ -37,29 +37,29 @@ public class OrderController {
         return new ModelAndView("/orders/order","cart",orderService.findAll());
     }
 
-    @GetMapping
 
 
-    @ModelAttribute("user")
-    private User getPrincipal() {
-        User userInfo = null;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            userInfo = userService.getUserByName(((UserDetails) principal).getUsername());
-        }
-        return userInfo;
-    }
+//
+//    @ModelAttribute("user")
+//    private User getPrincipal() {
+//        User userInfo = null;
+//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        if (principal instanceof UserDetails) {
+//            userInfo = userService.getUserByName(((UserDetails) principal).getUsername());
+//        }
+//        return userInfo;
+//    }
 
 
-    @GetMapping ("/addtocart/{id}")
-    public ModelAndView showFormAddToCart(@PathVariable Long id){
-        Optional<Product> product = productService.findById(id);
-        Order order = new Order();
-        order.setProduct(product.get());
-        ModelAndView modelAndView = new ModelAndView("/home/addtocart");
-        modelAndView.addObject("order", order);
-        return modelAndView;
-    }
+//    @GetMapping ("/addtocart/{id}")
+//    public ModelAndView showFormAddToCart(@PathVariable Long id){
+//        Optional<Product> product = productService.findById(id);
+//        Order order = new Order();
+//        order.setProduct(product.get());
+//        ModelAndView modelAndView = new ModelAndView("/home/addtocart");
+//        modelAndView.addObject("order", order);
+//        return modelAndView;
+//    }
 
 //    @PostMapping("/addtocart")
 //    public ResponseEntity<String> buyAjax( @RequestBody Product product, HttpSession session){
@@ -102,6 +102,15 @@ public class OrderController {
         productService.save(product.get());
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
+//    @PostMapping
+//    public ResponseEntity<?>  addToCart(@RequestBody Order order){
+//        order.setQuantity(1);
+//        orderService.save(order);
+//        Optional<Product> product =  productService.findById(order.getProduct().getId());
+//        product.get().setQuantity(product.get().getQuantity() -1);
+//        productService.save(product.get());
+//        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+//    }
 
 //    @GetMapping("/clear")
 //    public ModelAndView clearCart(HttpSession session) {

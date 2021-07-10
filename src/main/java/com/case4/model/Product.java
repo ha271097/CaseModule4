@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -22,8 +23,8 @@ public class Product {
     private double price;
     private String description;
     @Lob
-    private String img;
 
+    private String img;
 
 
     @ManyToOne
