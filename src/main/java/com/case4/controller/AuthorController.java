@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.util.List;
 
-@RequestMapping("login")
+@RequestMapping("/login")
 @RestController
 public class AuthorController {
 
@@ -41,6 +41,13 @@ public class AuthorController {
         return mav;
     }
 
+    @GetMapping
+    public ModelAndView listProduct(){
+        return new ModelAndView("/home/index","listProduct",productService.findAll() );
+    }
+
+
+
     @PostMapping("/user")
     public ModelAndView login(SignInForm signInForm){
         ModelAndView modelAndView = new ModelAndView("admin/login");
@@ -53,6 +60,7 @@ public class AuthorController {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)){
                 if(user.getRole().getRoleName().equals("ROLE_USER")){
                     ModelAndView mav = new ModelAndView("home/index");
+                    System.out.println(user.getUsername());
                     mav.addObject("user", user);
                     return mav;
                 }

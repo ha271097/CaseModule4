@@ -37,6 +37,9 @@ public class OrderController {
         return new ModelAndView("/orders/order","cart",orderService.findAll());
     }
 
+    @GetMapping
+
+
     @ModelAttribute("user")
     private User getPrincipal() {
         User userInfo = null;
@@ -79,15 +82,25 @@ public class OrderController {
 //    }
 
 
-    @PostMapping("/addtocart")
-    public ModelAndView addToCart(Order order){
+//    @PostMapping("/addtocart")
+//    public ModelAndView addToCart(Order order){
+//        order.setQuantity(1);
+//        orderService.save(order);
+//        Optional<Product> product =  productService.findById(order.getProduct().getId());
+//        product.get().setQuantity(product.get().getQuantity() -1);
+//        productService.save(product.get());
+//        return new ModelAndView("redirect:");
+//
+//    }
+
+    @PostMapping
+    public ResponseEntity<?>  addToCart(@RequestBody Order order){
         order.setQuantity(1);
         orderService.save(order);
         Optional<Product> product =  productService.findById(order.getProduct().getId());
         product.get().setQuantity(product.get().getQuantity() -1);
         productService.save(product.get());
-        return new ModelAndView("redirect:");
-
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
 //    @GetMapping("/clear")
