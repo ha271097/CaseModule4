@@ -16,8 +16,9 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    private Product product;
+    @OneToMany
+    @JoinColumn(name = "product_id")
+    private List<Product> product;
     @NotNull
     private int quantity;
 
@@ -29,13 +30,6 @@ public class Order {
         this.id = id;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
 
     public int getQuantity() {
         return quantity;

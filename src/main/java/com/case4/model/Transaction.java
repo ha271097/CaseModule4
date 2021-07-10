@@ -27,10 +27,9 @@ public class Transaction {
     private Date createDate;
     private Date completeDate;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "transaction_order",
-    joinColumns = @JoinColumn(name = "transaction_id"), inverseJoinColumns = @JoinColumn(name = "order_id"))
-    List<Order> orders = new ArrayList<>();
+//    @OneToMany
+//    @JoinColumn(name = "transaction_id")
+//    private List<Order> orders;
 
 
 }

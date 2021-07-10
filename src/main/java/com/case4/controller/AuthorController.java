@@ -57,7 +57,7 @@ public class AuthorController {
                     return mav;
                 }
                 if(user.getRole().getRoleName().equals("ROLE_ADMIN")){
-                    ModelAndView mav = new ModelAndView("admin/home");
+                    ModelAndView mav = new ModelAndView("admin/helloadmin");
                     mav.addObject("user", user);
                     return mav;
                 }
