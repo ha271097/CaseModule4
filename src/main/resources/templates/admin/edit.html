@@ -25,41 +25,41 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 product">
-            <div class="block-image-product" style="position: relative">
-                <img th:src="@{'/content/' + ${product.getAvatar()}}" class="img-responsive img-thumbnail"
-                     alt="không có"
-                     width="600px" height="600px">
-            </div>
+<!--        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 product">-->
+<!--            <div class="block-image-product" style="position: relative">-->
+<!--                <img th:src="@{'/content/' + ${product.img}}" class="img-responsive img-thumbnail"-->
+<!--                     alt="không có"-->
+<!--                     width="600px" height="600px">-->
+<!--            </div>-->
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 product">
             <div id="form">
-                <form th:action="@{/admin/edit/{id}(id=${product.getId()})}" th:object="${product} " method="POST"
+                <form th:object="${product} " method="POST"
                       enctype="multipart/form-data">
                     <div>
                         <label>Name</label>
-                        <input type="text" th:field="*{name}"/>
+                        <input type="text" th:placeholder="${product.name}" th:field="*{name}"/>
                     </div>
                     <div>
                         <label>Price</label>
-                        <input type="text" th:field="*{price}"/>
+                        <input type="text" th:placeholder="${product.price}" th:field="*{price}"/>
                     </div>
                     <div>
                         <label>Description</label>
-                        <textarea class="form-control" id="description" th:field="*{description}"
-                                  placeholder="Write a short description."></textarea>
+                        <input type="text" th:placeholder="${product.description}" th:field="*{description}"/>
                     </div>
                     <div>
                         <label>Avatar</label>
-                        <input type="file" th:field="*{image}"/>
+                        <input type="text" th:placeholder="${product.img}" th:field="*{img}"/>
                     </div>
                     <div>
                         <label>TypeProduct</label>
-                        <select th:field="*{typeProduct}">
-                            <option th:each="t : ${typeproducts}" th:value="${t.id}" th:text="${t.type}"/>
+                        <select th:field="*{category}">
+                            <option th:each="c : ${categorys}" th:value="${c.id}" th:text="${c.name}"/>
                         </select>
+                        <input type="hidden" th:field="${product.id}">
                     </div>
-                    <input type="submit" value="Edit product">
+                    <input type="submit" value="Edit">
                 </form>
             </div>
         </div>

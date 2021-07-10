@@ -43,12 +43,12 @@
                     </div>
                     <div>
                         <label>Avatar</label>
-                        <input type="file" th:field="*{image}"/>
+                        <input type="text" th:field="*{img}"/>
                     </div>
                     <div>
                         <label>TypeProduct</label>
-                        <select th:field="*{typeProduct}">
-                            <option th:each="t : ${typeproducts}" th:value="${t.id}" th:text="${t.type}"/>
+                        <select th:field="*{category}">
+                            <option th:each="c : ${categorys}" th:value="${c.id}" th:text="${c.name}"/>
                         </select>
                     </div>
                     <input type="submit" value="Creat new product">
