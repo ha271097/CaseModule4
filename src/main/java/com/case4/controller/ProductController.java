@@ -45,8 +45,8 @@ public class ProductController {
         return categoryService.findAll();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Optional<Product>> findByID(@PathVariable Long id){
+//    @GetMapping("/{id}")
+//    public ResponseEntity<Optional<Product>> findByID(@PathVariable Long id){}
 
 
     @GetMapping("")
@@ -116,28 +116,28 @@ public class ProductController {
 //        modelAndView.addObject("products", products);
 //        return modelAndView;
 //    }
-    @PostMapping("/edit")
-    public ModelAndView edit(Product product){
-        productService.save(product);
-        return new ModelAndView("redirect:/products");
-    }
-
-    @GetMapping("/{id}/delete")
-    public ModelAndView showFormDelete(@PathVariable Long id){
-        return new ModelAndView("/products/delete","product", productService.findById(id));
-    }
-
-
-    @PostMapping("/delete")
-    public ModelAndView delete(Product product){
-        productService.remove(product.getId());
-        return new ModelAndView("redirect:/products");
-    }
-
-    @GetMapping("/{id}/addToCart")
-    public ModelAndView addToCart(@PathVariable Long id){
-        return new ModelAndView("/");
-    }
+//    @PostMapping("/edit")
+//    public ModelAndView edit(Product product){
+//        productService.save(product);
+//        return new ModelAndView("redirect:/products");
+//    }
+//
+//    @GetMapping("/{id}/delete")
+//    public ModelAndView showFormDelete(@PathVariable Long id){
+//        return new ModelAndView("/products/delete","product", productService.findById(id));
+//    }
+//
+//
+//    @PostMapping("/delete")
+//    public ModelAndView delete(Product product){
+//        productService.remove(product.getId());
+//        return new ModelAndView("redirect:/products");
+//    }
+//
+//    @GetMapping("/{id}/addToCart")
+//    public ModelAndView addToCart(@PathVariable Long id){
+//        return new ModelAndView("/");
+//    }
 
 
 }

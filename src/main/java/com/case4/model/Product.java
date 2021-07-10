@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -23,8 +24,8 @@ public class Product {
     private double price;
     private String description;
     @Lob
-    private String img;
 
+    private String img;
 
 
     @ManyToOne
