@@ -3,20 +3,21 @@
 <head th:replace="/layout::head"></head>
 <body>
 <div th:replace="/layout :: reload"></div>
-<h1> User</h1>
+<!--<h1> User</h1>-->
 <div th:fragment="header">
     <div class="container-fluid header" id="header" style="border-bottom: solid 4px lightgrey">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-lg-2 col-xl-2 block-image">
             </div>
             <div class="col-xs-12 col-sm-12 col-lg-8 col-xl-8 block-background">
-                <h1 class="name-shop">Shop HQ</h1>
+<!--                <h1 class="name-shop">Shop HQ</h1>-->
                 <br>
                 <div class="container-ef">
-                    <div class="text"><span>Chào mừng bạn đến với shop HQ chuyên Súng máy</span></div>
+<!--                    <div class="text"><span>Chào mừng bạn đến với shop HQ chuyên Súng máy</span></div>-->
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-lg-2 col-xl-2 block-login">
+<!--                <p role="button" class="btn btn-primary" th:text="user.name"></p>-->
                 <a role="button" class="btn btn-primary" href="/login/user">Login</a>
                 <a role="button" class="btn btn-primary" href="/registration">Registation</a>
             </div>
@@ -35,19 +36,25 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" th:href="@{/}">Trang chủ</a>
+                        <a class="nav-link" th:href="@{/home}">Trang chủ</a>
                     </li>
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link"-->
+<!--                           th:href="@{/category/{category}(category=${'dm1'})}">Danh muc 1</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link"-->
+<!--                           th:href="@{/category/{category}(category=${'dm2'})}">Danh muc 2</a>-->
+<!--                    </li>-->
                     <li class="nav-item">
                         <a class="nav-link"
-                           th:href="@{/category/{category}(category=${'dm1'})}">Danh muc 1</a>
+                           th:href="@{/orders/listOrders/1}">Giỏ hàng của bạn</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link"
-                           th:href="@{/category/{category}(category=${'dm2'})}">Danh muc 2</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           th:href="@{/category/{category}(category=${'dm3'})}">Danh muc 3</a>
+                       <div th:if="${user}">
+                           <span th:text="${user.name}"></span>
+                       </div>
                     </li>
 
                 </ul>
@@ -61,6 +68,7 @@
     </div>
 </div>
 
+
 <div class="container">
     <div class="row">
         <th:block th:if="${mess}">
@@ -73,7 +81,7 @@
         </th:block>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 product" th:each="product : ${listProduct}">
             <div class="block-image-product" style="position: relative">
-                <img th:src="${product.img }"  class="img-responsive img-thumbnail"
+                <img th:src="${product.img }"  class="img-responsive img-thumbnail "
                      alt=""
 
                      width="300px" height="300px">
@@ -89,7 +97,7 @@
             <div class="block-price-product" style="text-align: center" th:text="${product.getPrice()}+' VNĐ'" id="price">
             </div>
             <div class="block-price-product" style="text-align: center" >
-                <a th:href="@{/orders/addtocart/{id}(id=${product.id})}">Add to cart</a>
+                <a class="add-to-cart" th:data="${product.id}">Add to cart</a>
             </div>
         </div>
     </div>
@@ -109,5 +117,61 @@
 <!--</div>-->
 
 <footer th:replace="/layout :: footer"></footer>
+
+
+<script type="text/javascript">
+
+    $(document).on('click', '.add-to-cart', function (){
+        let userId = localStorage.getItem('userId');
+        console.log(111, userId);
+        let productId = $(this).attr('data');
+        console.log(11, productId);
+        let data = {
+            product: {id: productId},
+            user: {id: userId}
+        }
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "POST",
+            data: JSON.stringify(data),
+            //tên API
+            url: "/orders",
+            //xử lý khi thành công
+            success: function () {
+                alert("Thêm thành công");
+            }
+
+        });
+    })
+
+    // document.ready(function () {
+    //
+    // })
+
+    // function addtocart(data) {
+    //     $.ajax({
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json'
+    //         },
+    //         type: "POST",
+    //         data: JSON.stringify(data),
+    //         //tên API
+    //         url: "/orders",
+    //         //xử lý khi thành công
+    //         success: function () {
+    //             alert(12321);
+    //         }
+    //
+    //     });
+    //     //chặn sự kiện mặc định của thẻ
+    //     event.preventDefault();
+    // }
+
+</script>
+
 </body>
 </html>

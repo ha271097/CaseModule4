@@ -1,12 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head xmlns:th="http://www.thymeleaf.org">
     <meta charset="UTF-8">
   <meta http-equiv="refresh" content="1;url=http://localhost:8080/home">
 
   <title>Title</title>
 </head>
 <body>
+<li class="nav-item" style="display: none">
+    <div th:if="${user}">
+        <span id="get-id-user" class="nav-link" th:text="${user.getId()}"></span>
+    </div>
+
+</li>
 
 </body>
+<script>
+    let userId = document.getElementById('get-id-user').textContent;
+    localStorage.setItem('userId', userId);
+</script>
 </html>

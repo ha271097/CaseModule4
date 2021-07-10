@@ -25,10 +25,10 @@ public class HomeController {
         return new ModelAndView("/home/index","listProduct",productService.findAll() );
     }
 
-    @GetMapping("/registration")
-    public ModelAndView registation(){
-        return new ModelAndView("/home/registration","user", new User());
-    }
+//    @GetMapping("/registration")
+//    public ModelAndView registation(){
+//        return new ModelAndView("/home/registration","user", new User());
+//    }
 
 
 

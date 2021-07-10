@@ -19,6 +19,11 @@ public class Order {
     private Long id;
     @ManyToOne
     private Product product;
+
+
+    @ManyToOne
+    private User user;
+
     @NotNull
     private int quantity;
 

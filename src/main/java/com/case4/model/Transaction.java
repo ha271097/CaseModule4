@@ -26,12 +26,11 @@ public class Transaction {
     private String message;
     private Date createDate;
     private Date completeDate;
+
 //    @OneToMany
 //    @JoinColumn(name = "transaction_id")
 //    private List<Order> orders;
 
 
-//    public void setUser(String name) {
-//        this.user = user;
-//    }
+
 }
