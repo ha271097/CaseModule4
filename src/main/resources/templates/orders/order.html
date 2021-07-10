@@ -117,10 +117,10 @@
         let orderId = $(this).attr('data');
         console.log(11, orderId);
         let data = {
-           id1: 119
+           id: orderId
         }
 
-        // let rowDelete = $(this).parent().parent()
+        let rowBuy = $(this).parent().parent()
         $.ajax({
             headers: {
                 'Accept': 'application/json',
@@ -133,7 +133,7 @@
             //xử lý khi thành công
             success: function () {
                 alert("Mua  thành công");
-                // rowDelete.remove();
+                rowBuy.remove();
             }
 
         });
