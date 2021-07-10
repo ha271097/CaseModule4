@@ -14,4 +14,6 @@ public interface IRoleService {
     void save(Role role);
 
     void remove(Long id);
+
+    Role findByName(String name);
 }

@@ -13,7 +13,10 @@ public class RoleService implements IRoleService{
     @Autowired
     private IRoleRepo repo;
 
-
+    @Override
+    public Role findByName(String name){
+       return repo.findByRoleName("ROLE_USER");
+    }
     @Override
     public Iterable<Role> findAll() {
         return repo.findAll();
