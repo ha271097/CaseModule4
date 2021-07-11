@@ -2,6 +2,7 @@ package com.case4.controller;
 
 import com.case4.model.Order;
 import com.case4.model.Product;
+import com.case4.model.Transaction;
 import com.case4.model.User;
 import com.case4.service.order.OrderService;
 import com.case4.service.product.ProductService;
@@ -33,15 +34,20 @@ public class OrderController {
     private ProductService productService;
 
     @GetMapping("listOrders/{id}")
-
-
     public ModelAndView listOrder(@PathVariable Long id){
         Optional<User> user = userService.findById(id);
         return new ModelAndView("/orders/order","cart",orderService.findAllByUser(user.get()));
     }
 
 
-
+//    @ModelAttribute("user")
+//    public User user(){
+//        User user = new User();
+//        Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        user = userService.getUserByName(((UserDetails ) obj).getUsername());
+//
+//        return user;
+//    }
 
 
 

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="/layout :: header"></div>
+
+
+
+    <form action="" method="post" th:object="${transaction}">
+        <table id="customers">
+            <tr>
+                <td>Name</td>
+                <td><input type="text"  th:field="*{order.user.name}"></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><input type="text" th:field="*{address}"></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Submit"></td>
+            </tr>
+
+
+
+        </table>
+    </form>
+
+
+
+
+
+
+
+
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

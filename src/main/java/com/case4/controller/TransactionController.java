@@ -7,10 +7,8 @@ import com.case4.service.transaction.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
 
@@ -37,5 +35,15 @@ public class TransactionController {
 
         return new  ResponseEntity<>(HttpStatus.OK);
     }
+
+
+    @GetMapping("/payOrder/{id}")
+    public ModelAndView payOrder(@PathVariable Long id){
+        Optional<Order> order = orderService.findById(id);
+        Transaction transaction = new Transaction();
+        transaction.setOrder(order.get());
+        return new ModelAndView("/orders/payOrder","transaction", transaction);
+    }
+
 
 }

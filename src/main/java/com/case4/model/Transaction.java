@@ -17,16 +17,23 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne
     private Status status;
 
+    @ManyToOne
+    private Order order;
+
     private String userName;
 
-//    private String address;
+    private String address;
 
     private String message;
+
     private Date createDate;
+
     private Date completeDate;
+
     private double totalAmount;
 
     public Long getId() {
