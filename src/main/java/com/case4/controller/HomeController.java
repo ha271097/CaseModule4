@@ -27,29 +27,9 @@ public class HomeController {
 
     @GetMapping("/user")
     public ModelAndView homeUser(){
-        return new ModelAndView("/home/indexUser","listProduct",productService.findAll() );    }
-
-//    @GetMapping("/registration")
-//    public ModelAndView registation(){
-//        return new ModelAndView("/home/registration","user", new User());
-//    }
+        return new ModelAndView("/home/indexUser","listProduct",productService.findAll() );
+    }
 
 
-
-
-//    @GetMapping("/category/{category}")
-//    public ModelAndView listProductByCategory(@PathVariable("category") String category){
-//        ModelAndView modelAndView = new ModelAndView("home/index");
-//
-//        if(category.equals("dm1")){
-//            products = productService.findAllByTypeProduct(categoryService.getTypeProduct(1L));
-//        } else if (type.equals("dm2")){
-//            products = productService.findAllByTypeProduct(typeProductService.getTypeProduct(2L), pageable);
-//        } else {
-//            products = productService.findAllByTypeProduct(typeProductService.getTypeProduct(3L), pageable);
-//        }
-//        modelAndView.addObject("products", products);
-//        return modelAndView;
-//    }
 
 }

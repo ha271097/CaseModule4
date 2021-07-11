@@ -39,11 +39,6 @@ public class CreateUserController {
             user.setPassword(createUser.getPassword());
             user.setRole(roleService.findByName("ROLE_USER"));
             userService.save(user);
-//        ModelAndView mav = newModelAndView("admin/login");
-//        mav.addObject("sign", new SignInForm());
             return new ModelAndView("redirect:/login");
-//        }
-//        return new ModelAndView("/home/registration","user", new CreateUser());
-
     }
 }

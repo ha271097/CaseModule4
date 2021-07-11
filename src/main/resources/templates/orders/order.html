@@ -16,13 +16,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/orders/clear">Hủy đơn hàng</a>
-                    </li>
-                    <li class="nav-item active">
                         <a class="nav-link" href="/carts/payOrder">Thanh toán đơn hàng</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="/home">Continue Buy</a>
+                        <a class="nav-link" href="/home/user">Về trang chủ</a>
                     </li>
                 </ul>
             </div>
@@ -33,13 +30,14 @@
 <table id="customers">
     <thead id="content">
     <tr>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Avatar</th>
-        <th>Description</th>
-        <th>Type</th>
-        <th colspan="3" style="text-align: center">Quality</th>
-        <th>Total</th>
+        <th>Tên sản phẩm</th>
+        <th>Giá bán</th>
+        <th>Ảnh</th>
+        <th>Mô tả</th>
+        <th>Danh mục</th>
+        <th>Số lượng</th>
+
+        <th>Tổng số tiền</th>
         <th>Xóa</th>
     </tr>
     </thead>
@@ -50,20 +48,10 @@
         <td><img th:src="@{${item.getValue().product.img}}" width="100" height="100" alt="Khongcoanh"/></td>
         <td th:text="${item.getValue().product.getDescription()}"></td>
         <td th:text="${item.getValue().product.category.name}"></td>
-        <!--<td><a role="button" th:href="@{/cart/update/{id}(id=${item.product.getId()},name='down')}">Bớt</a></td>-->
-<!--        <td>-->
-<!--            <button th:onclick="'$(this).click(update(\'' + ${item.getValue().product.getId()} +'\',\''+ 'down' + '\'))'">Down-->
-<!--            </button>-->
-<!--        </td>-->
         <td  th:text="${item.getValue().quantity}">Số Lượng</td>
-<!--        <td>-->
-<!--            <button th:onclick="'$(this).click(update(\'' + ${item.getValue().product.getId()} +'\',\''+ 'up' + '\'))'">Up</button>-->
-<!--        </td>-->
-        <!--<td><a role="button" th:href="@{/cart/update/{id}(id=${item.product.getId()},name='up')}">Thêm</a></td>-->
         <td id="price" th:text="${item.getValue().totalPrice}"></td>
-        <td> <a class="delete-order" th:data="${item.getValue().product.getId()}">Xóa</a></td>
-        <td> <a class="buy-order" th:data="${item.getValue().product.getId()}">Mua</a></td>
-<!--        <td><a th:href="@{/transaction/payOrder/{id}(id=${item.getId()})}">Mua hang</a></td>-->
+        <td> <a class="delete-order cusor-point" th:data="${item.getValue().product.getId()}">Xóa</a></td>
+
 
     </tr>
     <tr>
@@ -72,35 +60,6 @@
     </tr>
     </tbody>
 </table>
-<!--<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-<!--    <div class="modal-dialog" role="document">-->
-<!--        <div class="modal-content">-->
-<!--            <div class="modal-header">-->
-<!--                <h5 class="modal-title" id="exampleModalLabel">Thanh toán đơn hàng</h5>-->
-<!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--                    <span aria-hidden="true">&times;</span>-->
-<!--                </button>-->
-<!--            </div>-->
-<!--            <div class="modal-body">-->
-<!--                <form th:object="${cart}">-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="recipient-name" class="col-form-label">Recipient:</label>-->
-<!--                        <input type="text" class="form-control" id="recipient-name">-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="message-text" class="col-form-label">Message:</label>-->
-<!--                        <textarea class="form-control" id="message-text"></textarea>-->
-<!--                    </div>-->
-<!--                </form>-->
-<!--            </div>-->
-<!--            <div class="modal-footer">-->
-<!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-<!--                <button type="button" class="btn btn-primary">Send message</button>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
 
 
 <footer th:replace="/layout :: footer"></footer>
@@ -134,35 +93,6 @@
 
     }) ;
 
-    $(document).on('click', '.buy-order', function (){
-
-        // let userId = localStorage.getItem('userId');
-        // console.log(111, userId);
-
-        let orderId = $(this).attr('data');
-        console.log(11, orderId);
-        let data = {
-           id: orderId
-        }
-
-        let rowBuy = $(this).parent().parent()
-        $.ajax({
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            type: "POST",
-            data: JSON.stringify(data),
-            //tên API
-            url: "/transaction",
-            //xử lý khi thành công
-            success: function () {
-                alert("Mua  thành công");
-                rowBuy.remove();
-            }
-
-        });
-    })
 </script>
 
 </body>

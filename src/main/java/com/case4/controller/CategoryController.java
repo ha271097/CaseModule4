@@ -20,10 +20,6 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-//    @ModelAttribute("categories")
-//    public Iterable<Category> categories(){
-//        return categoryService.findAll();
-//    }
 
     @GetMapping()
     public ResponseEntity<Iterable<Category>> findAll(){

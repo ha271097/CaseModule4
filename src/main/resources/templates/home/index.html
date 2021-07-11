@@ -4,8 +4,12 @@
 <body>
 <head th:replace="/layout:: index"></head>
 <div th:replace="/layout :: reload"></div>
-<!--<h1> User</h1>-->
-<!--<div th:fragment="header">-->
+
+<h1 th:if="${session.cart}">
+    <span th:text="${(session.cart.size())}"></span>
+</h1>
+
+<div th:fragment="header">
 <!--    <div class="container-fluid header" id="header" style="border-bottom: solid 4px lightgrey">-->
 <!--        <div class="row">-->
 <!--            <div class="col-xs-12 col-sm-12 col-lg-2 col-xl-2 block-image">-->
@@ -26,31 +30,6 @@
 <!--    </div>-->
 <!--</div>-->
 
-<h1 th:if="${session.cart}">
-    <span th:text="${(session.cart.size())}"></span>
-</h1>
-
-<div th:fragment="header">
-    <div class="container-fluid header" id="header" style="border-bottom: solid 4px lightgrey">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-lg-2 col-xl-2 block-image">
-            </div>
-            <div class="col-xs-12 col-sm-12 col-lg-8 col-xl-8 block-background">
-                <h1 class="name-shop">Shop HH</h1>
-                <br>
-                <div class="container-ef">
-                    <div class="text"><span>Chào mừng bạn đến với shop HH chuyên Súng máy</span></div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-lg-2 col-xl-2 block-login">
-<!--                <p role="button" class="btn btn-primary" th:text="user.name"></p>-->
-                <a role="button" class="btn btn-primary" href="/login">Đăng Nhập</a>
-                <a role="button" class="btn btn-primary" href="/create">Đăng ký</a>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="container-fluid menu-navbar" th:fragment="menu">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -64,24 +43,11 @@
                     <li class="nav-item active">
                         <a class="nav-link" th:href="@{/home}">Trang chủ</a>
                     </li>
-<!--                    <li class="nav-item">-->
-<!--                        <a class="nav-link"-->
-<!--                           th:href="@{/category/{category}(category=${'dm1'})}">Danh muc 1</a>-->
-<!--                    </li>-->
-<!--                    <li class="nav-item">-->
-<!--                        <a class="nav-link"-->
-<!--                           th:href="@{/category/{category}(category=${'dm2'})}">Danh muc 2</a>-->
-<!--                    </li>-->
+
                     <li class="nav-item">
                         <a class="nav-link"
                            th:href="@{/orders/listOrders}">Giỏ hàng của bạn</a>
                     </li>
-                    <li class="nav-item">
-                       <div th:if="${user}" th:object="${user}">
-                           <span th:text="${user.name}"></span>
-                       </div>
-                    </li>
-
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
@@ -128,18 +94,7 @@
     </div>
 </div>
 
-<!--<div class="container">-->
-<!--    <div class="row">-->
-<!--        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 product"></div>-->
-<!--        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 product">-->
-<!--            <a role="button" class="btn btn-primary" th:href="@{'/'(page=${products.number - 1},regex=${regex})}"-->
-<!--               th:if="${products.hasPrevious()}">Previous</a>-->
-<!--            <span th:text="${products.number + 1}"></span>/<span th:text="${products.totalPages}"></span>-->
-<!--            <a role="button" class="btn btn-primary" th:href="@{'/'(page=${products.number + 1},regex=${regex})}"-->
-<!--               th:if="${products.hasNext()}">Next</a>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+
 
 <footer th:replace="/layout :: footer"></footer>
 

@@ -38,8 +38,6 @@ public class AdminController {
     @Autowired
     private BillDetailsService billDetailsService;
 
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private ICategoryService categoryService;
@@ -89,11 +87,6 @@ public class AdminController {
         return new ModelAndView("admin/create","product", new ProductForm());
     }
 
-//    @PostMapping("/create")
-//    public String saveproduct(Product product){
-//        productService.save(product);
-//        return "redirect:/admin/product";
-//    }
 
 
     @PostMapping("/create")
