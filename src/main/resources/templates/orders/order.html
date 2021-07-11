@@ -63,6 +63,7 @@
         <td id="price" th:text="${item.quantity*item.product.getPrice()}"></td>
         <td> <a class="delete-order" th:data="${item.getId()}">Xóa</a></td>
         <td> <a class="buy-order" th:data="${item.getId()}">Mua</a></td>
+<!--        <td><a th:href="@{/transaction/payOrder/{id}(id=${item.getId()})}">Mua hang</a></td>-->
 
     </tr>
     <tr>
@@ -71,6 +72,34 @@
     </tr>
     </tbody>
 </table>
+<!--<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog" role="document">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="exampleModalLabel">Thanh toán đơn hàng</h5>-->
+<!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                    <span aria-hidden="true">&times;</span>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <form th:object="${cart}">-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="recipient-name" class="col-form-label">Recipient:</label>-->
+<!--                        <input type="text" class="form-control" id="recipient-name">-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="message-text" class="col-form-label">Message:</label>-->
+<!--                        <textarea class="form-control" id="message-text"></textarea>-->
+<!--                    </div>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--                <button type="button" class="btn btn-primary">Send message</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 
 

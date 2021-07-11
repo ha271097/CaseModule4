@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.*;
 
 @Entity
@@ -17,16 +18,23 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne
     private Status status;
 
+    @ManyToOne
+    private Order order;
+
     private String userName;
 
-//    private String address;
+    private String address;
 
     private String message;
-    private Date createDate;
+
+    private LocalDate createDate;
+
     private Date completeDate;
+
     private double totalAmount;
 
     public Long getId() {
@@ -69,11 +77,11 @@ public class Transaction {
         this.message = message;
     }
 
-    public Date getCreateDate() {
+    public LocalDate getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(LocalDate createDate) {
         this.createDate = createDate;
     }
 

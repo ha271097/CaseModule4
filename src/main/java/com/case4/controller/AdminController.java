@@ -1,22 +1,25 @@
 package com.case4.controller;
 
-import com.case4.model.Category;
-import com.case4.model.Product;
-import com.case4.model.Transaction;
-import com.case4.model.User;
+import com.case4.model.*;
 import com.case4.service.category.ICategoryService;
 import com.case4.service.product.IProductService;
 import com.case4.service.product.ProductService;
 import com.case4.service.transaction.ITransactionService;
 import com.case4.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +39,9 @@ public class AdminController {
 
     @Autowired
     private ICategoryService categoryService;
+
+    @Value("${upload.path}")
+    private String fileUpload;
 
     @ModelAttribute("categorys")
     private Iterable<Category> categoryList(){
@@ -67,14 +73,38 @@ public class AdminController {
 
     @GetMapping("/create")
     public ModelAndView formCreate(){
-        return new ModelAndView("admin/create","product", new Product());
+        return new ModelAndView("admin/create","product", new ProductForm());
     }
 
+//    @PostMapping("/create")
+//    public String saveproduct(Product product){
+//        productService.save(product);
+//        return "redirect:/admin/product";
+//    }
+
+
     @PostMapping("/create")
-    public String saveproduct(Product product){
-        productService.save(product);
-        return "redirect:/admin/product";
+    public RedirectView createProduct(@ModelAttribute ProductForm product) {
+        Product product1 = new Product(
+                product.getId(),
+                product.getName(),
+                product.getQuantity(),
+                product.getPrice(),
+                product.getDescription(),
+                product.getCategory()
+        );
+        MultipartFile multipartFile = product.getImage();
+        String fileName = multipartFile.getOriginalFilename();
+        try {
+            FileCopyUtils.copy(product.getImage().getBytes(), new File(this.fileUpload + fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        product1.setImg(fileName);
+        productService.save(product1);
+        return new RedirectView("/admin/product");
     }
+
     @GetMapping("/edit")
     public ModelAndView updateForm(Long id){
         Product product = productService.findById(id).get();

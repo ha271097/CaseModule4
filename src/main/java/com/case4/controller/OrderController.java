@@ -32,16 +32,31 @@ public class OrderController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("listOrders/{id}")
+    @GetMapping("/listOrders")
+    public ModelAndView listOrder(){
+       User user = getPrincipal();
+        return new ModelAndView("/orders/order","cart",orderService.findAllByUser(user));
+    }
 
-
-    public ModelAndView listOrder(@PathVariable Long id){
-        Optional<User> user = userService.findById(id);
-        return new ModelAndView("/orders/order","cart",orderService.findAllByUser(user.get()));
+    @ModelAttribute("user")
+    public User getPrincipal() {
+        User userInfo = new User();
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            userInfo = userService.getUserByName(((UserDetails) principal).getUsername());
+        }
+        return userInfo;
     }
 
 
-
+//    @ModelAttribute("user")
+//    public User user(){
+//        User user = new User();
+//        Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        user = userService.getUserByName(((UserDetails ) obj).getUsername());
+//
+//        return user;
+//    }
 
 
 
@@ -51,6 +66,7 @@ public class OrderController {
 
     @PostMapping
     public ResponseEntity<?>  addToCart(@RequestBody Order order){
+        order.setUser(getPrincipal());
         order.setQuantity(1);
         orderService.save(order);
         Optional<Product> product =  productService.findById(order.getProduct().getId());

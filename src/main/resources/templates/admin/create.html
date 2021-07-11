@@ -33,18 +33,24 @@
                         <label>Name</label>
                         <input type="text" th:field="*{name}"/>
                     </div>
+
+
+                    <div>
+                        <label>Quantity</label>
+                        <input type="text" th:field="*{quantity}"/>
+                    </div>
                     <div>
                         <label>Price</label>
                         <input type="text" th:field="*{price}"/>
-                    </div>
+                    </div>>
                     <div>
                         <label>Description</label>
                         <input type="text" th:field="*{description}"/>
                     </div>
-                    <div>
-                        <label>Avatar</label>
-                        <input type="text" th:field="*{img}"/>
-                    </div>
+                    <tr>
+                        <td>Image</td>
+                        <td><input type="file" th:field="*{image}"></td>
+                    </tr>
                     <div>
                         <label>TypeProduct</label>
                         <select th:field="*{category}">
