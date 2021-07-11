@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="/layout :: head"></head>
 <body>
-<div th:replace="/layout :: header"></div>
+<div th:replace="/layout :: create"></div>
 <div class="container-fluid menu-navbar">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -14,7 +14,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" th:href="@{/admin}">Trang chủ</a>
+                        <a class="nav-link" th:href="@{/home}">Trang chủ</a>
                     </li>
                 </ul>
             </div>
@@ -42,7 +42,7 @@
                     <div>
                         <label>Price</label>
                         <input type="text" th:field="*{price}"/>
-                    </div>>
+                    </div>
                     <div>
                         <label>Description</label>
                         <input type="text" th:field="*{description}"/>

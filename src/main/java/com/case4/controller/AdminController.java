@@ -48,10 +48,18 @@ public class AdminController {
        return categoryService.findAll();
     }
 
+
+
     @GetMapping()
     public ModelAndView ListBill(){
         return new ModelAndView("/admin/home", "tran", transactionService.findAll());
+
     }
+
+//    @GetMapping
+//    private ModelAndView billUser(){
+//        Iterable<Transaction> bills
+//     }
 
 
     @GetMapping("/listUser")
