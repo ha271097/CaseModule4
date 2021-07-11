@@ -4,7 +4,6 @@ import com.case4.model.*;
 import com.case4.service.category.ICategoryService;
 import com.case4.service.product.IProductService;
 import com.case4.service.product.ProductService;
-import com.case4.service.transaction.ITransactionService;
 import com.case4.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,8 +29,6 @@ public class AdminController {
     @Autowired
     private IProductService productService;
 
-    @Autowired
-    private ITransactionService transactionService;
 
 
     @Autowired
@@ -48,10 +45,10 @@ public class AdminController {
        return categoryService.findAll();
     }
 
-    @GetMapping()
-    public ModelAndView ListBill(){
-        return new ModelAndView("/admin/home", "tran", transactionService.findAll());
-    }
+//    @GetMapping()
+//    public ModelAndView ListBill(){
+//        return new ModelAndView("/admin/home", "tran", transactionService.findAll());
+//    }
 
     @GetMapping("/listUser")
     public ModelAndView listUser() {

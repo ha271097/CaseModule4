@@ -109,11 +109,7 @@
 
     $(document).on('click', '.delete-order', function (){
 
-        // let userId = localStorage.getItem('userId');
-        // console.log(111, userId);
-
         let productId = $(this).attr('data');
-        console.log(11, orderId);
         let data = {
             product: {id: productId},
         }
