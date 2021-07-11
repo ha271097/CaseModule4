@@ -23,12 +23,12 @@ public class TransactionService implements ITransactionService {
 
     @Override
     public void save(Transaction transaction) {
-
+        transactionRepo.save(transaction);
     }
 
     @Override
     public void remove(Long id) {
-
+        transactionRepo.deleteById(id);
     }
 
     @Override

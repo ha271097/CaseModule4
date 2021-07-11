@@ -1,6 +1,7 @@
 package com.case4.service.order;
 
 import com.case4.model.Order;
+import com.case4.model.Product;
 import com.case4.model.User;
 import com.case4.repo.IOderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,11 @@ public class OrderService implements IOrderService{
     @Override
     public Iterable<Order> findAll() {
         return oderRepo.findAll();
+    }
+
+    @Override
+    public void deleteByProductAndUser(Long id_product, Long id_user) {
+        oderRepo.removeByProductAndUser(id_product,id_user);
     }
 
     @Override
@@ -47,7 +53,9 @@ public class OrderService implements IOrderService{
     }
 
     @Override
-    public void deleteAll() {
-        oderRepo.deleteAll();
+    public void deleteAllByUser(User user) {
+        oderRepo.deleteAllByUser(user);
     }
+
+
 }

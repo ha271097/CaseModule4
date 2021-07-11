@@ -22,7 +22,7 @@
                         <a class="nav-link" href="/orders/save">Thanh toán đơn hàng</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="/user">Continue Buy</a>
+                        <a class="nav-link" href="/home">Continue Buy</a>
                     </li>
                 </ul>
             </div>
@@ -61,7 +61,9 @@
         </td>
         <!--<td><a role="button" th:href="@{/cart/update/{id}(id=${item.product.getId()},name='up')}">Thêm</a></td>-->
         <td id="price" th:text="${item.quantity*item.product.getPrice()}"></td>
-        <td><a th:href="@{/templates/orders/remove/{id}(id=${item.product.getId()})}">Xóa</a></td>
+        <td> <a class="delete-order" th:data="${item.getId()}">Xóa</a></td>
+        <td> <a class="buy-order" th:data="${item.getId()}">Mua</a></td>
+
     </tr>
     <tr>
         <td colspan="9">Total:</td>
@@ -73,5 +75,70 @@
 
 
 <footer th:replace="/layout :: footer"></footer>
+
+<script>
+
+    $(document).on('click', '.delete-order', function (){
+
+        // let userId = localStorage.getItem('userId');
+        // console.log(111, userId);
+
+        let orderId = $(this).attr('data');
+        console.log(11, orderId);
+        let data = {
+           id: orderId
+        }
+
+        let rowDelete = $(this).parent().parent()
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "DELETE",
+            data: JSON.stringify(data),
+            //tên API
+            url: "/orders",
+            //xử lý khi thành công
+            success: function () {
+                alert("Xóa thành công");
+                rowDelete.remove();
+            }
+
+        });
+
+    }) ;
+
+    $(document).on('click', '.buy-order', function (){
+
+        // let userId = localStorage.getItem('userId');
+        // console.log(111, userId);
+
+        let orderId = $(this).attr('data');
+        console.log(11, orderId);
+        let data = {
+           id: orderId
+        }
+
+        let rowBuy = $(this).parent().parent()
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "POST",
+            data: JSON.stringify(data),
+            //tên API
+            url: "/transaction",
+            //xử lý khi thành công
+            success: function () {
+                alert("Mua  thành công");
+                rowBuy.remove();
+            }
+
+        });
+    })
+</script>
+
 </body>
 </html>
