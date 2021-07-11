@@ -44,25 +44,25 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="item : ${cart}">
-        <td th:id="name" th:text="${item.product.getName()}"></td>
-        <td th:text="${item.product.getPrice()}"></td>
-        <td><img th:src="@{${item.product.img}}" width="100" height="100" alt="Khongcoanh"/></td>
-        <td th:text="${item.product.getDescription()}"></td>
-        <td th:text="${item.product.category.name}"></td>
+    <tr th:each="item : ${session.cart}">
+        <td th:id="name" th:text="${item.getValue().product.name}"></td>
+        <td th:text="${item.getValue().product.price}"></td>
+        <td><img th:src="@{${item.getValue().product.img}}" width="100" height="100" alt="Khongcoanh"/></td>
+        <td th:text="${item.getValue().product.getDescription()}"></td>
+        <td th:text="${item.getValue().product.category.name}"></td>
         <!--<td><a role="button" th:href="@{/cart/update/{id}(id=${item.product.getId()},name='down')}">Bớt</a></td>-->
-        <td>
-            <button th:onclick="'$(this).click(update(\'' + ${item.product.getId()} +'\',\''+ 'down' + '\'))'">Down
-            </button>
-        </td>
-        <td id="quality" th:text="${item.quantity}"></td>
-        <td>
-            <button th:onclick="'$(this).click(update(\'' + ${item.product.getId()} +'\',\''+ 'up' + '\'))'">Up</button>
-        </td>
+<!--        <td>-->
+<!--            <button th:onclick="'$(this).click(update(\'' + ${item.getValue().product.getId()} +'\',\''+ 'down' + '\'))'">Down-->
+<!--            </button>-->
+<!--        </td>-->
+        <td  th:text="${item.getValue().quantity}">Số Lượng</td>
+<!--        <td>-->
+<!--            <button th:onclick="'$(this).click(update(\'' + ${item.getValue().product.getId()} +'\',\''+ 'up' + '\'))'">Up</button>-->
+<!--        </td>-->
         <!--<td><a role="button" th:href="@{/cart/update/{id}(id=${item.product.getId()},name='up')}">Thêm</a></td>-->
-        <td id="price" th:text="${item.quantity*item.product.getPrice()}"></td>
-        <td> <a class="delete-order" th:data="${item.getId()}">Xóa</a></td>
-        <td> <a class="buy-order" th:data="${item.getId()}">Mua</a></td>
+        <td id="price" th:text="${item.getValue().totalPrice}"></td>
+        <td> <a class="delete-order" th:data="${item.getValue().product.getId()}">Xóa</a></td>
+        <td> <a class="buy-order" th:data="${item.getValue().product.getId()}">Mua</a></td>
 <!--        <td><a th:href="@{/transaction/payOrder/{id}(id=${item.getId()})}">Mua hang</a></td>-->
 
     </tr>
@@ -112,10 +112,10 @@
         // let userId = localStorage.getItem('userId');
         // console.log(111, userId);
 
-        let orderId = $(this).attr('data');
+        let productId = $(this).attr('data');
         console.log(11, orderId);
         let data = {
-           id: orderId
+            product: {id: productId},
         }
 
         let rowDelete = $(this).parent().parent()
@@ -127,7 +127,7 @@
             type: "DELETE",
             data: JSON.stringify(data),
             //tên API
-            url: "/orders",
+            url: "/carts",
             //xử lý khi thành công
             success: function () {
                 alert("Xóa thành công");

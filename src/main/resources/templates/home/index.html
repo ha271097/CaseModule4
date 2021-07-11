@@ -4,6 +4,11 @@
 <body>
 <div th:replace="/layout :: reload"></div>
 <!--<h1> User</h1>-->
+
+<h1 th:if="${session.cart}">
+    <span th:text="${(session.cart.size())}"></span>
+</h1>
+
 <div th:fragment="header">
     <div class="container-fluid header" id="header" style="border-bottom: solid 4px lightgrey">
         <div class="row">
@@ -122,13 +127,10 @@
 
     $(document).on('click', '.add-to-cart', function (){
 
-        // let userId = localStorage.getItem('userId');
-        // console.log(111, userId);
         let productId = $(this).attr('data');
-        console.log(11, productId);
         let data = {
             product: {id: productId},
-            // user: {id: userId}
+
         }
         $.ajax({
             headers: {
@@ -138,7 +140,7 @@
             type: "POST",
             data: JSON.stringify(data),
             //tên API
-            url: "/orders",
+            url: "/carts",
             //xử lý khi thành công
             success: function () {
                 alert("Thêm thành công");
