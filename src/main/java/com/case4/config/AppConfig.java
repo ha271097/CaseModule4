@@ -4,6 +4,7 @@ import com.case4.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -27,13 +28,20 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers( "/").permitAll()
                 .and()
-                .authorizeRequests().antMatchers("/user/**").hasRole("USER")
+                .authorizeRequests().antMatchers("/user/**","/orders/**").hasRole("USER")
                 .and()
                 .authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN")
+                .anyRequest().permitAll()
                 .and()
-                .formLogin()
+                .formLogin().loginPage("/login")
+                .usernameParameter("username").passwordParameter("password")
+                .defaultSuccessUrl("/home")
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
         http.csrf().disable();
+    }
+
+    public  void  configure(WebSecurity web) throws Exception{
+        web.ignoring().antMatchers("/static/**");
     }
 }

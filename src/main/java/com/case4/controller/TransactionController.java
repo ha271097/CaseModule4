@@ -24,7 +24,6 @@ public class TransactionController {
 
     @PostMapping
     public ResponseEntity<?> buyOrder(@RequestBody Order order){
-
         Optional<Order> order1 = orderService.findById(order.getId());
 //        System.out.println(order1.get().getUser().getUsername());
         Transaction transaction = new Transaction();

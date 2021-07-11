@@ -16,4 +16,5 @@ public interface IUserService {
     void save(User user);
 
     void remove(Long id);
+//    User findOne(String account);
 }

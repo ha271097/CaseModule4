@@ -166,6 +166,8 @@
             url: "/transaction",
             //xử lý khi thành công
             success: function () {
+                alert("Mua  thành công");
+                rowBuy.remove();
                 // alert("Mua  thành công");
                 $('#modal-del').modal('hide');
                 rowBuy.remove();

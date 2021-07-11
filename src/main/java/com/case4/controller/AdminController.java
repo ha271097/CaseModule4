@@ -31,10 +31,6 @@ public class AdminController {
     private ITransactionService transactionService;
 
 
-//    @Autowired
-//    private ITransactionService transactionService;
-
-
     @Autowired
     private UserService userService;
 
