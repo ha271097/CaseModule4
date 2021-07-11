@@ -2,8 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="/layout::head"></head>
 <body>
+<head th:replace="/layout:: index"></head>
 <div th:replace="/layout :: reload"></div>
 <!--<h1> User</h1>-->
+<!--<div th:fragment="header">-->
+<!--    <div class="container-fluid header" id="header" style="border-bottom: solid 4px lightgrey">-->
+<!--        <div class="row">-->
+<!--            <div class="col-xs-12 col-sm-12 col-lg-2 col-xl-2 block-image">-->
+<!--            </div>-->
+<!--            <div class="col-xs-12 col-sm-12 col-lg-8 col-xl-8 block-background">-->
+<!--                <h1 class="name-shop">Shop HH</h1>-->
+<!--                <br>-->
+<!--                <div class="container-ef">-->
+<!--                    <div class="text"><span>Chào mừng bạn đến với shop HH chuyên Súng máy</span></div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-xs-12 col-sm-12 col-lg-2 col-xl-2 block-login">-->
+<!--&lt;!&ndash;                <p role="button" class="btn btn-primary" th:text="user.name"></p>&ndash;&gt;-->
+<!--                <a role="button" class="btn btn-primary" href="/login">Đăng Nhập</a>-->
+<!--                <a role="button" class="btn btn-primary" href="/create">Đăng ký</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 <h1 th:if="${session.cart}">
     <span th:text="${(session.cart.size())}"></span>

@@ -4,7 +4,7 @@
 
 <body>
 <h1>Xin chào admin!</h1>
-<div th:replace="/layout :: header"></div>
+<div th:replace="/layout :: adminhome"></div>
 <div th:replace="/layout :: reload"></div>
 
 <div class="container-fluid menu-navbar" th:fragment="menu">
@@ -18,15 +18,17 @@
 
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/admin">Trang <chủ></chủ></a>
+          </li>
+
           <li class="nav-item active">
             <a class="nav-link" href="/admin/create">Create new product</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/admin/createstaff">Create new staff</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/admin/bill">All bill</a>
-          </li>
+
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link" href="/admin/bill">All bill</a>-->
+<!--          </li>-->
           <li class="nav-item">
             <a class="nav-link" href="/admin/listUser">List user</a>
           </li>

@@ -426,18 +426,85 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-lg-2 col-xl-2 block-login">
-                <a role="button" class="btn btn-primary" th:href="@{/login/create}">
+                <a role="button" class="btn btn-primary" th:href="@{/create}">
                     Đăng ký
                 </a>
-                <a role="button" class="btn btn-primary" th:href="@{/logout}">
-                    Đăng xuất
-                </a>
+<!--                <a role="button" class="btn btn-primary" th:href="@{/logout}">-->
+<!--                    Đăng xuất-->
+<!--                </a>-->
             </div>
 
         </div>
     </div>
 </div>
 
+<div th:fragment="index">
+    <div class="container-fluid header" style="border-bottom: solid 4px lightgrey">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-lg-2 col-xl-2 block-image">
+            </div>
+            <div class="col-xs-12 col-sm-12 col-lg-8 col-xl-8 block-background">
+                <h1 class="name-shop">Shop HQ</h1>
+                <br>
+                <div class="container-ef">
+                    <div class="text"><span>Chào mừng bạn đến với shop HH chuyên Adidas</span></div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-lg-2 col-xl-2 block-login">
+                <a role="button" class="btn btn-primary" th:href="@{/login}">
+                    Đăng nhập
+                </a>
+                                <a role="button" class="btn btn-primary" th:href="@{/create}">
+                                    Đăng ký
+                                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div th:fragment="create">
+    <div class="container-fluid header"  style="border-bottom: solid 4px lightgrey">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-lg-2 col-xl-2 block-image">
+            </div>
+            <div class="col-xs-12 col-sm-12 col-lg-8 col-xl-8 block-background">
+                <h1 class="name-shop">Shop HH</h1>
+                <br>
+                <div class="container-ef">
+                    <div class="text"><span>Chào mừng bạn đến với shop HQ chuyên Adidas</span></div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-lg-2 col-xl-2 block-login">
+                <a role="button" class="btn btn-primary" th:href="@{/login}">
+                    Đăng nhập
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="adminhome">
+    <div class="container-fluid header"  style="border-bottom: solid 4px lightgrey">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-lg-2 col-xl-2 block-image">
+            </div>
+            <div class="col-xs-12 col-sm-12 col-lg-8 col-xl-8 block-background">
+                <h1 class="name-shop">Shop HH</h1>
+                <br>
+                <div class="container-ef">
+                    <div class="text"><span>Chào mừng bạn đến với shop HQ chuyên Adidas</span></div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-lg-2 col-xl-2 block-login">
+                <a role="button" class="btn btn-primary" th:href="@{/logout}">
+                    Đăng xuất
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="back-to-header" th:fragment="reload">
     <a href="#header">Về đầu trang</a>
@@ -468,9 +535,9 @@
             </li>
         </ul>
     </div>
-    <div class="footer-copyright text-center py-3">© 2020
+    <div class="footer-copyright text-center py-3">© 2021
         All rights reserved:
-        <a href="#"> ShopHQ.com</a>
+        <a href="#"> HaiHa.com</a>
     </div>
 </footer>
 
