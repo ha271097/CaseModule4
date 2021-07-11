@@ -27,9 +27,9 @@ public class Transaction {
     private Date createDate;
     private Date completeDate;
 
-//    @OneToMany
-//    @JoinColumn(name = "transaction_id")
-//    private List<Order> orders;
+    @OneToMany
+    @JoinColumn(name = "transaction_id")
+    private List<Order> orders;
 
 
 

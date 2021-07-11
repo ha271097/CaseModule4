@@ -47,6 +47,7 @@ public class AdminController {
         return new ModelAndView("/admin/home", "tran", transactionService.findAll());
     }
 
+
     @GetMapping("/listUser")
     public ModelAndView listUser() {
         Iterable<User> users = userService.findAll();
@@ -93,4 +94,6 @@ public class AdminController {
         productService.remove(id);
         return "redirect:/admin/product";
     }
+
+
 }

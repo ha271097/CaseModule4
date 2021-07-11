@@ -85,22 +85,22 @@ AuthorController {
 //       return modelAndView;
 //    }
 
-    @GetMapping("/create")
-    public ModelAndView registation(){
-        return new ModelAndView("/home/registration","user", new CreateUser());
-    }
-
-    @PostMapping("/create")
-    public ModelAndView saveUser(@Valid CreateUser createUser){
-        User user = new User();
-        user.setUsername(createUser.getUsername());
-        user.setEmail(createUser.getEmail());
-        user.setName(createUser.getName());
-        user.setPassword(createUser.getPassword());
-        user.setRole(roleService.findByName("ROLE_USER"));
-        userService.save(user);
-        ModelAndView mav = new ModelAndView("admin/login");
-        mav.addObject("sign", new SignInForm());
-        return mav;
-    }
+//    @GetMapping("/create")
+//    public ModelAndView registation(){
+//        return new ModelAndView("/home/registration","user", new CreateUser());
+//    }
+//
+//    @PostMapping("/create")
+//    public ModelAndView saveUser(@Valid CreateUser createUser){
+//        User user = new User();
+//        user.setUsername(createUser.getUsername());
+//        user.setEmail(createUser.getEmail());
+//        user.setName(createUser.getName());
+//        user.setPassword(createUser.getPassword());
+//        user.setRole(roleService.findByName("ROLE_USER"));
+//        userService.save(user);
+//        ModelAndView mav = new ModelAndView("admin/login");
+//        mav.addObject("sign", new SignInForm());
+//        return mav;
+//    }
 }
