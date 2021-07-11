@@ -71,4 +71,10 @@ public class UserService  implements IUserService, UserDetailsService {
                 authorities
         );
     }
+
+
+//    @Override
+//    public com.case4.model.User findOne(String account) {
+//        return repo.findByAccount(account);
+//    }
 }
