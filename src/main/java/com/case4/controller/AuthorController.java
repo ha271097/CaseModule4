@@ -47,15 +47,15 @@ AuthorController {
     }
 
 
-    @ModelAttribute("customer")
-    public User getPrincipal() {
-        User userInfo = new User();
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            userInfo = userService.getUserByName(((UserDetails) principal).getUsername());
-        }
-        return userInfo;
-    }
+//    @ModelAttribute("customer")
+//    public User getPrincipal() {
+//        User userInfo = new User();
+//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        if (principal instanceof UserDetails) {
+//            userInfo = userService.getUserByName(((UserDetails) principal).getUsername());
+//        }
+//        return userInfo;
+//    }
 
 //    @PostMapping("")
 //    public ModelAndView login(SignInForm signInForm){
