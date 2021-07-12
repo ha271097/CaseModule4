@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="/layout :: header"></div>
+
+
+<form   th:action="@{/carts/payOrder}" method="post" th:object="${bills}">
+    <table>
+        <tr><td> <input type="hidden" th:field="*{id}"/></td></tr>
+        <tr>
+            <td>Tên người mua</td>
+            <td><input type="text" th:field="*{username}"></td>
+        </tr>
+        <tr>
+            <td>Số điện thoại</td>
+            <td><input type="text" th:field="*{phone}"></td>
+        </tr>
+        <tr>
+            <td>Địa chỉ nhận hàng</td>
+            <td><input type="text" th:field="*{address}"></td>
+        </tr>
+        <tr>
+            <td>Ghi chú</td>
+            <td><input type="text" th:field="*{note}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Mua hàng"></td>
+        </tr>
+    </table>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+<footer th:replace="/layout :: footer"></footer>
+
+</body>
+</html>

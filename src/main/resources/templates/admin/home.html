@@ -45,12 +45,11 @@
     <thead>
     <tr>
         <th>ID</th>
-        <th>Thời gian oder</th>
-        <th>Thời gian hoàn thành</th>
         <th>Tên người mua</th>
-        <th>Địa chỉ</th>
+        <th>Địa chỉ giao hàng</th>
+<!--        <th></th>-->
         <th>Ghi chú</th>
-        <th>Trạng thái</th>
+<!--        <th>Trạng thái</th>-->
         <th>Tên Sản Phẩm</th>
         <th>Số lượng</th>
         <th>Thành tiền</th>
@@ -58,19 +57,22 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="t : ${tran}">
+    <tr th:each="t : ${billdetails}">
         <td th:text="${t.id}"></td>
-        <td th:text="${t.createDate}"></td>
-        <td th:text="${t.completeDate }" width="100" height="100"></td>
-        <td th:text="${t.address}"></td>
-        <td th:text="${t.message}"></td>
-        <td th:value="${t.status.name}"></td>
-        <th:block th:each="o: ${t.orders}">
-            <td th:text="${o.quantity}"></td>
-        </th:block>
-        <td th:text="${}"></td>
-        <td><a th:href="@{/admin/edit/{id}(id=${product.getId()})}">Edit</a></td>
-        <td><a role="button" th:href="@{/admin/delete/{id}(id=${product.getId()})}"
+        <td th:text="${t.bill.username}"></td>
+        <td th:text="${t.bill.address }" ></td>
+        <td th:text="${t.bill.note}"></td>
+        <td th:text="${t.product.name}"></td>
+        <td th:text="${t.quantity}"></td>
+        <td th:text="${t.total}"></td>
+
+
+<!--        <th:block th:each="o: ${t.orders}">-->
+<!--            <td th:text="${o.quantity}"></td>-->
+<!--        </th:block>-->
+<!--        <td th:text="${}"></td>-->
+<!--        <td><a th:href="@{/admin/edit/{id}(id=${product.getId()})}">Edit</a></td>-->
+        <td><a role="button" th:href="@{/admin/delete/{id}(id=${t.product.id})}"
                onclick="return confirm('Are you sure?')">Delete</a></td>
     </tr>
     </tbody>

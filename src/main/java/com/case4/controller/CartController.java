@@ -1,10 +1,9 @@
 package com.case4.controller;
 
 
-import com.case4.model.Cart;
-import com.case4.model.Order;
-import com.case4.model.Product;
-import com.case4.model.User;
+import com.case4.model.*;
+import com.case4.service.bill.BillService;
+import com.case4.service.billdetails.BillDetailsService;
 import com.case4.service.cart.CartService;
 import com.case4.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +13,11 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -28,6 +29,12 @@ public class CartController {
 
     @Autowired
     private CartService cartService;
+
+    @Autowired
+    private BillService billService;
+
+    @Autowired
+    private BillDetailsService billDetailsService;
 
 
     @ModelAttribute("user")
@@ -68,7 +75,44 @@ public class CartController {
         session.setAttribute("cart", cartHashMap);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+
+    @GetMapping("/payOrder")
+    public ModelAndView showFormPayOrder(HttpSession session){
+        User user = (User)session.getAttribute("user");
+
+        ModelAndView modelAndView = new ModelAndView("/orders/bills");
+        Bill bill = new Bill();
+        modelAndView.addObject("bills", bill);
+        return modelAndView;
+    }
+    
+    
+    @PostMapping("/payOrder")
+    public ModelAndView addBill(HttpSession session, @ModelAttribute("bills") Bill bill){
+
+            billService.addBills(bill);
+            billService.save(bill);
+            HashMap<Long, Cart> cartHashMap = (HashMap<Long, Cart>) session.getAttribute("cart");
+
+        for (Map.Entry<Long, Cart> itemCart: cartHashMap.entrySet()
+             ) {
+            BillDetail billDetail = new BillDetail();
+            billDetail.setBill(bill);
+            billDetail.setProduct(itemCart.getValue().getProduct());
+            billDetail.setQuantity(itemCart.getValue().getQuantity());
+            billDetail.setTotal(itemCart.getValue().getTotalPrice());
+            billDetailsService.save(billDetail);
+        }
+        session.removeAttribute("cart");
+        return new ModelAndView("/orders/order");
+
+
+    }
+    
 }
+
+
 
 
 //    @DeleteMapping

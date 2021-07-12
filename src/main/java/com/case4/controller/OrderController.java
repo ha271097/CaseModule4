@@ -49,19 +49,6 @@ public class OrderController {
     }
 
 
-//    @ModelAttribute("user")
-//    public User user(){
-//        User user = new User();
-//        Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        user = userService.getUserByName(((UserDetails ) obj).getUsername());
-//
-//        return user;
-//    }
-
-
-
-
-
 
 
     @PostMapping
@@ -74,16 +61,6 @@ public class OrderController {
         productService.save(product.get());
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
-
-
-//    @GetMapping("/clear/{id}")
-//    public ModelAndView clearCart(HttpSession session) {
-//        orderService.deleteAll();
-//        session.removeAttribute("cart");
-//        return new ModelAndView("/orders/order");
-//    }
-
-
 
 
 

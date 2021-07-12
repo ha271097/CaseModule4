@@ -104,24 +104,13 @@
       <div class="block-price-product" style="text-align: center" th:text="${product.getPrice()}+' VNĐ'" id="price">
       </div>
       <div class="block-price-product" style="text-align: center" >
-        <a class="add-to-cart" th:data="${product.id}">Add to cart</a>
+        <a class="add-to-cart  cusor-point"  th:data="${product.id}">Add to cart</a>
       </div>
     </div>
   </div>
 </div>
 
-<!--<div class="container">-->
-<!--    <div class="row">-->
-<!--        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 product"></div>-->
-<!--        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 product">-->
-<!--            <a role="button" class="btn btn-primary" th:href="@{'/'(page=${products.number - 1},regex=${regex})}"-->
-<!--               th:if="${products.hasPrevious()}">Previous</a>-->
-<!--            <span th:text="${products.number + 1}"></span>/<span th:text="${products.totalPages}"></span>-->
-<!--            <a role="button" class="btn btn-primary" th:href="@{'/'(page=${products.number + 1},regex=${regex})}"-->
-<!--               th:if="${products.hasNext()}">Next</a>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+
 
 <footer th:replace="/layout :: footer"></footer>
 
