@@ -31,7 +31,7 @@ public class CreateUserController {
 
     @PostMapping("")
     public ModelAndView saveUser(@Valid CreateUser createUser, BindingResult bindingResult) {
-//        if (!bindingResult.hasFieldErrors()) {
+        if (!bindingResult.hasFieldErrors()) {
             User user = new User();
             user.setUsername(createUser.getUsername());
             user.setEmail(createUser.getEmail());
@@ -39,11 +39,11 @@ public class CreateUserController {
             user.setPassword(createUser.getPassword());
             user.setRole(roleService.findByName("ROLE_USER"));
             userService.save(user);
-//        ModelAndView mav = newModelAndView("admin/login");
-//        mav.addObject("sign", new SignInForm());
+        ModelAndView mav = new ModelAndView("/login");
+        mav.addObject("sign", new SignInForm());
             return new ModelAndView("redirect:/login");
-//        }
-//        return new ModelAndView("/home/registration","user", new CreateUser());
+        }
+        return new ModelAndView("/home/registration","user", new CreateUser());
 
     }
 }
